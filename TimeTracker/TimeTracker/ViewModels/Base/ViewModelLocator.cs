@@ -7,11 +7,12 @@ using TimeTracker.Views;
 using TinyIoC;
 using Xamarin.Forms;
 
+
 namespace TimeTracker.ViewModels
 {
     public class ViewModelLocator
     {
-        private static TinyIoCContainer _container;
+        private static TinyIoCContainer  _container;
         private static Dictionary<Type, Type> _viewLookup;
 
 
