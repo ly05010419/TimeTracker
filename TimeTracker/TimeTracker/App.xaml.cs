@@ -1,4 +1,6 @@
 ﻿using System;
+using TimeTracker.Services;
+using TimeTracker.ViewModels;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -12,12 +14,12 @@ namespace TimeTracker
         {
             InitializeComponent();
 
-            MainPage = new MainPage();
         }
 
-        protected override void OnStart()
+        protected override async void OnStart()
         {
-            // Handle when your app starts
+            var navService = ViewModelLocator.Resolve<INavigationService>();
+            await navService.NavigateToAsync<LoginViewModel>();
         }
 
         protected override void OnSleep()
