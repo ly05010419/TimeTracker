@@ -1,7 +1,8 @@
-﻿﻿using System.Diagnostics;
+﻿using System.Diagnostics;
 using System.Windows.Input;
-using TimeTracker.Services;
 using TimeTracker.Services.Account;
+using TinyIoC.Base;
+using TinyIoC.Navigation;
 using Xamarin.Forms;
 
 namespace TimeTracker.ViewModels
@@ -33,7 +34,7 @@ namespace TimeTracker.ViewModels
             set => SetProperty(ref _signInCommand, value);
         }
 
-        public LoginViewModel(INavigationService navigationService,IAccountService accountService)
+        public LoginViewModel(INavigationService navigationService, IAccountService accountService)
         {
             _navigationService = navigationService;
             _accountService = accountService;
@@ -45,11 +46,10 @@ namespace TimeTracker.ViewModels
                 bool result = await _accountService.LoginAsync(Username, Password);
                 if (result)
                 {
-                    await _navigationService.NavigateToAsync<DashboardViewModel>();
+                    await _navigationService.PushAsync<DashboardViewModel>();
                 }
                 else
                 {
-                    
                 }
             });
         }

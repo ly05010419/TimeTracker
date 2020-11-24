@@ -1,21 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
-using TimeTracker.Services;
 using TimeTracker.Services.Account;
 using TimerTracker.Views;
+using TimeTracker.ViewModels;
 using TimeTracker.Views;
-using TinyIoC;
+using TinyIoC.Base;
+using TinyIoC.Navigation;
 using Xamarin.Forms;
 
 
-namespace TimeTracker.ViewModels
+namespace TinyIoC
 {
     public class ViewModelLocator
     {
         private static TinyIoCContainer  _container;
         private static Dictionary<Type, Type> _viewLookup;
-
-
+        
         static ViewModelLocator()
         {
             _container = new TinyIoCContainer();
@@ -29,7 +29,6 @@ namespace TimeTracker.ViewModels
             
             _container.Register<INavigationService, NavigationService>();
             _container.Register<IAccountService, AccountService>();
-
         }
 
         static void Register<ViewModel, View>() where ViewModel : ViewModelBase where View : Page

@@ -1,10 +1,10 @@
-﻿﻿using System;
+﻿using System;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Threading.Tasks;
 using TimeTracker.Models;
 using TimeTracker.ViewModels.Button;
-using TimeTracker.Views.Buttons;
+using TinyIoC.Base;
 using Xamarin.Forms;
 
 namespace TimeTracker.ViewModels
@@ -26,8 +26,7 @@ namespace TimeTracker.ViewModels
             get => _currentStartTime;
             set => SetProperty(ref _currentStartTime, value);
         }
-
-
+        
         private double _todaysEarnings;
 
         public double TodaysEarnings
@@ -63,9 +62,8 @@ namespace TimeTracker.ViewModels
         public TimeClockViewModel()
         {
             WorkItems = new ObservableCollection<WorkItem>();
-           
 
-          
+
             TodaysEarnings = 0;
             ClockInOutButtonModel =
                 new ButtonModel("Clock In", new Command(() =>
@@ -73,7 +71,7 @@ namespace TimeTracker.ViewModels
                     Debug.WriteLine("ClockInOutButtonModel");
                     if (IsClockedIn)
                     {
-                        WorkItems.Insert(0,new WorkItem(CurrentStartTime, DateTime.Now));
+                        WorkItems.Insert(0, new WorkItem(CurrentStartTime, DateTime.Now));
                         ClockInOutButtonModel.Text = "Clock In";
                     }
                     else
@@ -86,10 +84,10 @@ namespace TimeTracker.ViewModels
                 }));
         }
 
-        public override Task InitializeAsync(object navigationDate = null)
+        public override Task InitAsync()
         {
             RunningTotal = new TimeSpan();
-            return base.InitializeAsync(navigationDate);
+            return base.InitAsync();
         }
     }
 }

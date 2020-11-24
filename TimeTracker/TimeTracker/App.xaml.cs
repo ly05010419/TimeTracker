@@ -1,6 +1,8 @@
-﻿using System;
+﻿
 using TimeTracker.Services;
 using TimeTracker.ViewModels;
+using TinyIoC;
+using TinyIoC.Navigation;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -13,13 +15,12 @@ namespace TimeTracker
         public App()
         {
             InitializeComponent();
-
         }
 
         protected override async void OnStart()
         {
             var navService = ViewModelLocator.Resolve<INavigationService>();
-            await navService.NavigateToAsync<LoginViewModel>();
+            await navService.PushAsync<LoginViewModel>();
         }
 
         protected override void OnSleep()

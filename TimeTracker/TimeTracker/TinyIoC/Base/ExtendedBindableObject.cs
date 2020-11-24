@@ -1,12 +1,11 @@
-﻿﻿using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using Xamarin.Forms;
 
-namespace TimeTracker.ViewModels
+namespace TinyIoC.Base
 {
     public class ExtendedBindableObject:BindableObject
     {
-        
         protected bool SetProperty<T>(ref T storage, T value, [CallerMemberName] string propertyName = null)
         {
 

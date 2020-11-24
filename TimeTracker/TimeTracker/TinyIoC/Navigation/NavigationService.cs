@@ -1,13 +1,13 @@
-﻿﻿using System.Threading.Tasks;
-using TimeTracker.ViewModels;
- using TimeTracker;
- using Xamarin.Forms;
+﻿using System.Threading.Tasks;
+using TimeTracker;
+using TinyIoC.Base;
+using Xamarin.Forms;
 
-namespace TimeTracker.Services
+namespace TinyIoC.Navigation
 {
     public class NavigationService : INavigationService
     {
-        public async Task NavigateToAsync<ViewModel>(object navigationData = null, bool setRoot = false)  where ViewModel:ViewModelBase
+        public async Task PushAsync<ViewModel>(bool setRoot = false)  where ViewModel:ViewModelBase
         {
             var page = ViewModelLocator.CreatePageFor(typeof(ViewModel));
             if (setRoot)
@@ -39,11 +39,11 @@ namespace TimeTracker.Services
 
             if (page.BindingContext is ViewModelBase vmBase)
             {
-                await vmBase.InitializeAsync(navigationData);
+                await vmBase.InitAsync();
             }
         }
 
-        public Task GoBackAsync()
+        public Task PopAsync()
         {
             return App.Current.MainPage.Navigation.PopAsync();
         }

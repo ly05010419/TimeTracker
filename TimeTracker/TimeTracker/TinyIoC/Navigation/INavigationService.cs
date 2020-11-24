@@ -1,7 +1,7 @@
-﻿﻿using System.Threading.Tasks;
-using TimeTracker.ViewModels;
+﻿using System.Threading.Tasks;
+using TinyIoC.Base;
 
-namespace TimeTracker.Services
+ namespace TinyIoC.Navigation
 {
     public interface INavigationService
     {
@@ -12,12 +12,12 @@ namespace TimeTracker.Services
         /// <param name="setRoot"></param>
         /// <typeparam name="ViewModel"></typeparam>
         /// <returns></returns>
-        Task NavigateToAsync<ViewModel>(object navigationData = null, bool setRoot = false) where ViewModel:ViewModelBase;
+        Task PushAsync<ViewModel>( bool setRoot = false) where ViewModel:ViewModelBase;
 
         /// <summary>
         /// Navigation method to pop off of the Naviation Stack
         /// </summary>
         /// <returns></returns>
-        Task GoBackAsync();
+        Task PopAsync();
     }
 }

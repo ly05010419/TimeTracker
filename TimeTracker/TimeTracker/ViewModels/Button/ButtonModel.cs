@@ -1,18 +1,18 @@
-﻿﻿using System;
+﻿using System;
 using System.Windows.Input;
+using TinyIoC.Base;
 using Xamarin.Forms;
 
 namespace TimeTracker.ViewModels.Button
 {
-    public class ButtonModel:ExtendedBindableObject
+    public class ButtonModel : ExtendedBindableObject
     {
-        
         private string _text;
 
         public string Text
         {
             get => _text;
-            set => SetProperty(ref _text,value);
+            set => SetProperty(ref _text, value);
         }
 
         private bool _isVisible;
@@ -20,7 +20,7 @@ namespace TimeTracker.ViewModels.Button
         public bool IsVisible
         {
             get => _isVisible;
-            set => SetProperty(ref _isVisible,value);
+            set => SetProperty(ref _isVisible, value);
         }
 
         private bool _isEnable;
@@ -28,7 +28,7 @@ namespace TimeTracker.ViewModels.Button
         public bool IsEnable
         {
             get => _isEnable;
-            set => SetProperty(ref _isVisible,value);
+            set => SetProperty(ref _isVisible, value);
         }
 
         private ICommand _command;
@@ -36,25 +36,24 @@ namespace TimeTracker.ViewModels.Button
         public ICommand Command
         {
             get => _command;
-            set => SetProperty(ref _command,value);
+            set => SetProperty(ref _command, value);
         }
 
-        public ButtonModel(string title,ICommand command,bool isVisible = true,bool isEnable = true)
+        public ButtonModel(string title, ICommand command, bool isVisible = true, bool isEnable = true)
         {
             Text = title;
             Command = command;
             IsVisible = isVisible;
             IsEnable = isEnable;
         }
-        
-        
-        public ButtonModel(string title,Action action,bool isVisible = true,bool isEnable = true)
+
+
+        public ButtonModel(string title, Action action, bool isVisible = true, bool isEnable = true)
         {
             Text = title;
             Command = new Command(action);
             IsVisible = isVisible;
             IsEnable = isEnable;
         }
-
     }
 }

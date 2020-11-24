@@ -1,4 +1,5 @@
-﻿﻿using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
+using TinyIoC.Base;
 
 namespace TimeTracker.ViewModels
 {
@@ -11,9 +12,9 @@ namespace TimeTracker.ViewModels
             get => _profileViewModel;
             set => SetProperty(ref _profileViewModel, value);
         }
-        
+
         private SummaryViewModel _summaryViewModel;
-        
+
         public SummaryViewModel SummaryViewModel
         {
             get => _summaryViewModel;
@@ -21,7 +22,7 @@ namespace TimeTracker.ViewModels
         }
 
         private TimeClockViewModel _timeClockViewModel;
-        
+
         public TimeClockViewModel TimeClockViewModel
         {
             get => _timeClockViewModel;
@@ -29,14 +30,15 @@ namespace TimeTracker.ViewModels
         }
 
         private SettingsViewModel _settingsViewModel;
-        
+
         public SettingsViewModel SettingsViewModel
         {
             get => _settingsViewModel;
             set => SetProperty(ref _settingsViewModel, value);
         }
 
-        public DashboardViewModel(ProfileViewModel profileViewModel,SummaryViewModel summaryViewModel,TimeClockViewModel timeClockViewModel, SettingsViewModel settingsViewModel)
+        public DashboardViewModel(ProfileViewModel profileViewModel, SummaryViewModel summaryViewModel,
+            TimeClockViewModel timeClockViewModel, SettingsViewModel settingsViewModel)
         {
             ProfileViewModel = profileViewModel;
             SummaryViewModel = summaryViewModel;
@@ -44,13 +46,13 @@ namespace TimeTracker.ViewModels
             SettingsViewModel = settingsViewModel;
         }
 
-        public override Task InitializeAsync(object navigationDate = null)
+        public override Task InitAsync()
         {
-            return Task.WhenAny(base.InitializeAsync(navigationDate),
-                ProfileViewModel.InitializeAsync(null),
-                TimeClockViewModel.InitializeAsync(null),
-                SummaryViewModel.InitializeAsync(null),
-                SettingsViewModel.InitializeAsync(null)
+            return Task.WhenAny(base.InitAsync(),
+                ProfileViewModel.InitAsync(),
+                TimeClockViewModel.InitAsync(),
+                SummaryViewModel.InitAsync(),
+                SettingsViewModel.InitAsync()
             );
         }
     }
