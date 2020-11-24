@@ -5,13 +5,9 @@
              x:Class="TimeTracker.Views.LoginView" Title="Login">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="LoginView"
-                   VerticalOptions="Center"
-                   HorizontalOptions="CenterAndExpand" />
-            <Entry Placeholder="username" Text="{Binding Username}"/>
-            <Entry Placeholder="password" Text="{Binding Password}" IsPassword="True"/>
-
-            <Button Text="Sign in" Command="{Binding SignInCommand}"/>
+            <Entry Placeholder="username" Text="{Binding Username}" />
+            <Entry Placeholder="password" Text="{Binding Password}" IsPassword="True" />
+            <Button Text="Sign in" Command="{Binding SignInCommand}" />
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

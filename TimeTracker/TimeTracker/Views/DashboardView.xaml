@@ -2,31 +2,31 @@
 
 <TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-            xmlns:android = "clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
-            android:TabbedPage.ToolbarPlacement="Bottom"
-           
             xmlns:pages="clr-namespace:TimeTracker.Views;assembly=TimeTracker"
-
+            xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
+            android:TabbedPage.ToolbarPlacement="Bottom"
             x:Class="TimerTracker.Views.DashboardView">
+
+
     <TabbedPage.Children>
-      <NavigationPage Title="Time">
-          <x:Arguments>
-              <pages:TimeClockView BindingContext="{Binding TimeClockViewModel}"/>
-          </x:Arguments>
-      </NavigationPage>
-        <NavigationPage Title="Summary">
+        <NavigationPage Title="Time" IconImageSource="menu.png">
             <x:Arguments>
-                <pages:SummaryView BindingContext="{Binding SummaryViewModel}"/>
+                <pages:TimeClockView BindingContext="{Binding TimeClockViewModel}" />
             </x:Arguments>
         </NavigationPage>
-        <NavigationPage Title="Profile">
+        <NavigationPage Title="Summary" IconImageSource="dashboard.png">
             <x:Arguments>
-                <pages:ProfileView BindingContext="{Binding ProfileViewModel}"/>
+                <pages:SummaryView BindingContext="{Binding SummaryViewModel}" />
             </x:Arguments>
         </NavigationPage>
-        <NavigationPage Title="Settings">
+        <NavigationPage Title="Profile" IconImageSource="list.png">
             <x:Arguments>
-                <pages:SettingsView BindingContext="{Binding SettingsViewModel}"/>
+                <pages:ProfileView BindingContext="{Binding ProfileViewModel}" />
+            </x:Arguments>
+        </NavigationPage>
+        <NavigationPage Title="Settings" IconImageSource="settings.png">
+            <x:Arguments>
+                <pages:SettingsView BindingContext="{Binding SettingsViewModel}" />
             </x:Arguments>
         </NavigationPage>
     </TabbedPage.Children>
